@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "debug_log_painter.h"
 

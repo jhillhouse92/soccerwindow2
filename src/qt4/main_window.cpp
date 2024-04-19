@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "main_window.h"
 
@@ -1513,7 +1513,7 @@ MainWindow::createFieldCanvas()
                  || mode == rcsc::PM_IndFreeKick_Right )
             {
                 QAction * act = new QAction( M_playmode_change_act_group );
-                act->setText( QString::fromAscii( playmode_strings[mode] ) );
+                act->setText( QString::fromUtf8( playmode_strings[mode] ) );
                 connect( act, SIGNAL( triggered() ), mapper, SLOT( map() ) );
                 mapper->setMapping( act, mode );
             }
@@ -2788,7 +2788,7 @@ MainWindow::printShortcutKeys()
     table_widget->setHorizontalHeaderLabels( header );
 
     table_widget->horizontalHeader()->setStretchLastSection( true );
-    table_widget->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    table_widget->horizontalHeader()->setSectionResizeMode( QHeaderView::ResizeToContents );
     table_widget->verticalHeader()->hide();
 
     int row = 0;
@@ -2949,7 +2949,7 @@ MainWindow::updatePositionLabel( const QPoint & point )
         char buf[32];
         snprintf( buf, 32, "(%.2f, %.2f)", x, y );
 
-        M_position_label->setText( QString::fromAscii( buf ) );
+        M_position_label->setText( QString::fromUtf8( buf ) );
     }
 }
 

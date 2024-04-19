@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "player_painter_rcss.h"
 

@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "launcher_dialog.h"
 

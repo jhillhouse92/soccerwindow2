@@ -1,5 +1,6 @@
 TEMPLATE = app
 QT += network
+QT += widgets
 # QT += opengl
 TARGET = soccerwindow2
 DESTDIR = ../../bin

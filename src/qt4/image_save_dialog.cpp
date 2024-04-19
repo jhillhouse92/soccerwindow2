@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "image_save_dialog.h"
 
@@ -187,8 +187,8 @@ ImageSaveDialog::createFileNameControls()
 
     const QString default_format
         = ( Options::instance().imageSaveFormat().empty()
-            ? QString::fromAscii( "PNG" )
-            : QString::fromAscii( Options::instance().imageSaveFormat().c_str() ) );
+            ? QString::fromUtf8( "PNG" )
+            : QString::fromUtf8( Options::instance().imageSaveFormat().c_str() ) );
 
     M_format_choice = new QComboBox();
     {
@@ -549,7 +549,7 @@ ImageSaveDialog::saveImage( const int start_cycle,
         M_field_canvas->draw( painter );
 
         //std::cout << "save image " << file_path << std::endl;
-        if ( ! image.save( file_path_all, format.toAscii() ) )
+        if ( ! image.save( file_path_all, format.toUtf8() ) )
         {
             QMessageBox::critical( this,
                                    tr( "Error" ),

@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "score_board_painter.h"
 
@@ -123,7 +123,7 @@ ScoreBoardPainter::draw( QPainter & painter )
 
         painter.drawText( left_rect,
                           Qt::AlignCenter,
-                          QString::fromAscii( buf ) );
+                          QString::fromUtf8( buf ) );
     }
     {
         QRect right_rect( board_left_x + board_width*2/3 + 1,
@@ -145,7 +145,7 @@ ScoreBoardPainter::draw( QPainter & painter )
 
         painter.drawText( right_rect,
                           Qt::AlignCenter,
-                          QString::fromAscii( buf ) );
+                          QString::fromUtf8( buf ) );
     }
     {
         QRect time_rect( board_width/3 - 1,
@@ -175,7 +175,7 @@ ScoreBoardPainter::draw( QPainter & painter )
 
         painter.drawText( time_rect,
                           Qt::AlignCenter,
-                          QString::fromAscii( buf ) );
+                          QString::fromUtf8( buf ) );
     }
 
     drawPenaltyScores( painter );

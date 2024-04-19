@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "player_type_dialog.h"
 
@@ -68,8 +68,8 @@ protected:
 
           double lhs = 0.0;
           double rhs = 0.0;
-          std::sscanf( src->data( left ).toString().toAscii(), " %lf ", &lhs );
-          std::sscanf( src->data( right ).toString().toAscii(), " %lf ", &rhs );
+          std::sscanf( src->data( left ).toString().toUtf8(), " %lf ", &lhs );
+          std::sscanf( src->data( right ).toString().toUtf8(), " %lf ", &rhs );
 
           return lhs < rhs;
       }
@@ -126,7 +126,7 @@ PlayerTypeDialog::createTable()
     M_item_view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
 
     M_item_view->horizontalHeader()->setSortIndicatorShown( false );
-    M_item_view->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    M_item_view->horizontalHeader()->setSectionResizeMode( QHeaderView::ResizeToContents );
 
 
     QFont font = M_item_view->font();
@@ -230,14 +230,14 @@ PlayerTypeDialog::updateData()
         // size
 //         //snprintf( buf, 32, "%.2f", param.playerSize() );
 //         M_model->setData( M_model->index( row, col++ ),
-//                           QString::number( param.playerSize() ), //QString::fromAscii( buf ),
+//                           QString::number( param.playerSize() ), //QString::fromUtf8( buf ),
 //                           Qt::DisplayRole );
 
         // speed real/max
         snprintf( buf, 32, "%5.3f / %5.3f",
                   param.realSpeedMax(), param.playerSpeedMax() );
         M_model->setData( M_model->index( row, col++ ),
-                          QString::fromAscii( buf ),
+                          QString::fromUtf8( buf ),
                           Qt::DisplayRole );
 
         // accel step
@@ -249,42 +249,42 @@ PlayerTypeDialog::updateData()
         //snprintf( buf, 32, "%.4f",
         //          SP.maxPower() * param.dashPowerRate() * param.effortMax() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( SP.maxPower() * param.dashPowerRate() * param.effortMax(), 'g', 5 ),
                           Qt::DisplayRole );
 
         // dash power rate
         //snprintf( buf, 32, "%.5f", param.dashPowerRate() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.dashPowerRate(), 'g', 4 ),
                           Qt::DisplayRole );
 
         // decay
         //snprintf( buf, 32, "%.3f", param.playerDecay() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.playerDecay(), 'g', 5 ),
                           Qt::DisplayRole );
 
         // inertia moment
         //snprintf( buf, 32, "%.2f", param.inertiaMoment() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.inertiaMoment(), 'g', 5 ),
                           Qt::DisplayRole );
 
         // kickable area
         //snprintf( buf, 32, "%.3f", param.playerSize() + param.kickableMargin() + SP.ballSize() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.playerSize() + param.kickableMargin() + SP.ballSize() ),
                           Qt::DisplayRole );
 
         // kickable margin
 //         //snprintf( buf, 32, "%.3f", param.kickableMargin() );
 //         M_model->setData( M_model->index( row, col++ ),
-//                           //QString::fromAscii( buf ),
+//                           //QString::fromUtf8( buf ),
 //                           QString::number( param.kickableMargin() ),
 //                           Qt::DisplayRole );
 
@@ -296,7 +296,7 @@ PlayerTypeDialog::updateData()
         // kick rand
         //snprintf( buf, 32, "%.2f", param.kickRand() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.kickRand(), 'g', 4 ),
                           Qt::DisplayRole );
 
@@ -308,27 +308,27 @@ PlayerTypeDialog::updateData()
         snprintf( buf, 32, "%.3f - %.3f",
                   min_r, max_r );
         M_model->setData( M_model->index( row, col++ ),
-                          QString::fromAscii( buf ),
+                          QString::fromUtf8( buf ),
                           Qt::DisplayRole );
 
         // stamina inc max
         //snprintf( buf, 32, "%.2f", param.staminaIncMax() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.staminaIncMax() ),
                           Qt::DisplayRole );
 
         // consume
         //snprintf( buf, 32, "%.2f", param.getOneStepStaminaComsumption() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.getOneStepStaminaComsumption(), 'g', 4 ),
                           Qt::DisplayRole );
 
         // extra stamina
         //snprintf( buf, 32, "%.2f", param.extraStamina() );
         M_model->setData( M_model->index( row, col++ ),
-                          //QString::fromAscii( buf ),
+                          //QString::fromUtf8( buf ),
                           QString::number( param.extraStamina(), 'g', 4 ),
                           Qt::DisplayRole );
 
@@ -336,7 +336,7 @@ PlayerTypeDialog::updateData()
         snprintf( buf, 32, "%.3f - %.3f",
                   param.effortMax(), param.effortMin() );
         M_model->setData( M_model->index( row, col++ ),
-                          QString::fromAscii( buf ),
+                          QString::fromUtf8( buf ),
                           Qt::DisplayRole );
 
         // foul detect probability

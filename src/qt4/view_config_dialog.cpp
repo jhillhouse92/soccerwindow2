@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "view_config_dialog.h"
 
@@ -1320,7 +1320,7 @@ ViewConfigDialog::updateFieldScale()
 
     char buf[16];
     snprintf( buf, 16, "%.2f", Options::instance().fieldScale() );
-    M_scale_text->setText( QString::fromAscii( buf ) );
+    M_scale_text->setText( QString::fromUtf8( buf ) );
 }
 
 /*-------------------------------------------------------------------*/

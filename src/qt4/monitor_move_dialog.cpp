@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "monitor_move_dialog.h"
 
@@ -307,7 +307,7 @@ MonitorMoveDialog::createLeftTeamBox()
         char buf[64];
 
         snprintf( buf, 64, "%2d:", i + 1 );
-        layout->addWidget( new QLabel( QString::fromAscii( buf ) ),
+        layout->addWidget( new QLabel( QString::fromUtf8( buf ) ),
                            i + 1, col++ );
         //
         M_left_cb[i] = new QCheckBox();
@@ -318,7 +318,7 @@ MonitorMoveDialog::createLeftTeamBox()
         layout->addWidget( M_left_cb[i], i + 1, col++ );
         //
         snprintf( buf, 64, "%7.3f", -3.0 * (i+1) );
-        M_left_x[i] = new QLineEdit( QString::fromAscii( buf ) );
+        M_left_x[i] = new QLineEdit( QString::fromUtf8( buf ) );
         M_left_x[i]->setValidator( new QDoubleValidator( -57.5, 57.5, 3,
                                                          M_left_x[i] ) );
         M_left_x[i]->setMaximumSize( 64, 24 );
@@ -385,7 +385,7 @@ MonitorMoveDialog::createRightTeamBox()
         char buf[64];
 
         snprintf( buf, 64, "%2d:", i + 1 );
-        layout->addWidget( new QLabel( QString::fromAscii( buf ) ),
+        layout->addWidget( new QLabel( QString::fromUtf8( buf ) ),
                            i + 1, col++ );
         //
         M_right_cb[i] = new QCheckBox();
@@ -396,7 +396,7 @@ MonitorMoveDialog::createRightTeamBox()
         layout->addWidget( M_right_cb[i], i + 1, col++ );
         //
         snprintf( buf, 64, "%7.3f", 3.0 * (i+1) );
-        M_right_x[i] = new QLineEdit( QString::fromAscii( buf ) );
+        M_right_x[i] = new QLineEdit( QString::fromUtf8( buf ) );
         M_right_x[i]->setValidator( new QDoubleValidator( -57.5, 57.5, 3,
                                                           M_right_x[i] ) );
         M_right_x[i]->setMaximumSize( 64, 24 );
@@ -570,19 +570,19 @@ MonitorMoveDialog::readFieldStatus()
     if ( M_ball_cb->isChecked() )
     {
         snprintf( buf, 64, "%.3f", view->ball().x() * rval );
-        M_ball_x->setText( QString::fromAscii( buf ) );
+        M_ball_x->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "%.3f", view->ball().y() * rval );
-        M_ball_y->setText( QString::fromAscii( buf ) );
+        M_ball_y->setText( QString::fromUtf8( buf ) );
 
         if ( M_ball_vel_cb->isChecked()
              && view->ball().hasDelta() )
         {
             snprintf( buf, 64, "%.3f", view->ball().deltaX() * rval );
-            M_ball_vx->setText( QString::fromAscii( buf ) );
+            M_ball_vx->setText( QString::fromUtf8( buf ) );
 
             snprintf( buf, 64, "%.3f", view->ball().deltaY() * rval );
-            M_ball_vy->setText( QString::fromAscii( buf ) );
+            M_ball_vy->setText( QString::fromUtf8( buf ) );
         }
     }
 
@@ -598,10 +598,10 @@ MonitorMoveDialog::readFieldStatus()
             if ( ! M_left_cb[idx]->isChecked() ) continue;
 
             snprintf( buf, 64, "%.3f", players[i].x() * rval );
-            M_left_x[idx]->setText( QString::fromAscii( buf ) );
+            M_left_x[idx]->setText( QString::fromUtf8( buf ) );
 
             snprintf( buf, 64, "%.3f", players[i].y() * rval );
-            M_left_y[idx]->setText( QString::fromAscii( buf ) );
+            M_left_y[idx]->setText( QString::fromUtf8( buf ) );
 
             double body = players[i].body();
             if ( reverse )
@@ -610,7 +610,7 @@ MonitorMoveDialog::readFieldStatus()
                 if ( body > 180.0 ) body -= 360.0;
             }
             snprintf( buf, 64, "%.3f", body );
-            M_left_body[idx]->setText( QString::fromAscii( buf ) );
+            M_left_body[idx]->setText( QString::fromUtf8( buf ) );
         }
     }
 
@@ -623,10 +623,10 @@ MonitorMoveDialog::readFieldStatus()
             if ( ! M_right_cb[idx]->isChecked() ) continue;
 
             snprintf( buf, 64, "%.3f", players[i].x() * rval );
-            M_right_x[idx]->setText( QString::fromAscii( buf ) );
+            M_right_x[idx]->setText( QString::fromUtf8( buf ) );
 
             snprintf( buf, 64, "%.3f", players[i].y() * rval );
-            M_right_y[idx]->setText( QString::fromAscii( buf ) );
+            M_right_y[idx]->setText( QString::fromUtf8( buf ) );
 
             double body = players[i].body();
             if ( reverse )
@@ -635,7 +635,7 @@ MonitorMoveDialog::readFieldStatus()
                 if ( body > 180.0 ) body -= 360.0;
             }
             snprintf( buf, 64, "%.3f", body );
-            M_right_body[idx]->setText( QString::fromAscii( buf ) );
+            M_right_body[idx]->setText( QString::fromUtf8( buf ) );
         }
     }
 
@@ -741,8 +741,8 @@ MonitorMoveDialog::open()
                 M_ball_cb->setChecked( true );
                 M_ball_x->setEnabled( true );
                 M_ball_y->setEnabled( true );
-                M_ball_x->setText( QString::fromAscii( str_x ) );
-                M_ball_y->setText( QString::fromAscii( str_y ) );
+                M_ball_x->setText( QString::fromUtf8( str_x ) );
+                M_ball_y->setText( QString::fromUtf8( str_y ) );
 
                 if ( str_vx[0] != '*'
                      && str_vy[0] != '*' )
@@ -761,8 +761,8 @@ MonitorMoveDialog::open()
                     M_ball_vel_cb->setChecked( true );
                     M_ball_vx->setEnabled( true );
                     M_ball_vy->setEnabled( true );
-                    M_ball_vx->setText( QString::fromAscii( str_vx ) );
-                    M_ball_vy->setText( QString::fromAscii( str_vy ) );
+                    M_ball_vx->setText( QString::fromUtf8( str_vx ) );
+                    M_ball_vy->setText( QString::fromUtf8( str_vy ) );
                 }
             }
         }
@@ -823,9 +823,9 @@ MonitorMoveDialog::open()
                 M_left_x[unum-1]->setEnabled( true );
                 M_left_y[unum-1]->setEnabled( true );
                 M_left_body[unum-1]->setEnabled( true );
-                M_left_x[unum-1]->setText( QString::fromAscii( str_x ) );
-                M_left_y[unum-1]->setText( QString::fromAscii( str_y ) );
-                M_left_body[unum-1]->setText( QString::fromAscii( str_body ) );
+                M_left_x[unum-1]->setText( QString::fromUtf8( str_x ) );
+                M_left_y[unum-1]->setText( QString::fromUtf8( str_y ) );
+                M_left_body[unum-1]->setText( QString::fromUtf8( str_body ) );
             }
             if ( side == rcsc::RIGHT )
             {
@@ -833,9 +833,9 @@ MonitorMoveDialog::open()
                 M_right_x[unum-1]->setEnabled( true );
                 M_right_y[unum-1]->setEnabled( true );
                 M_right_body[unum-1]->setEnabled( true );
-                M_right_x[unum-1]->setText( QString::fromAscii( str_x ) );
-                M_right_y[unum-1]->setText( QString::fromAscii( str_y ) );
-                M_right_body[unum-1]->setText( QString::fromAscii( str_body ) );
+                M_right_x[unum-1]->setText( QString::fromUtf8( str_x ) );
+                M_right_y[unum-1]->setText( QString::fromUtf8( str_y ) );
+                M_right_body[unum-1]->setText( QString::fromUtf8( str_body ) );
             }
         }
         else

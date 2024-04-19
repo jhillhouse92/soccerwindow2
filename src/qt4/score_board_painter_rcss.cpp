@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "score_board_painter_rcss.h"
 
@@ -157,7 +157,7 @@ ScoreBoardPainterRCSS::draw( QPainter & painter )
                   ( right_team.name().empty() || opt.anonymousMode() ) ? "" : right_team.name().c_str(),
                   mode_str.c_str(),
                   view->cycle() );
-        text = QString::fromAscii( buf );
+        text = QString::fromUtf8( buf );
     }
     else
     {
@@ -210,7 +210,7 @@ ScoreBoardPainterRCSS::draw( QPainter & painter )
                   ( right_team.name().empty() || opt.anonymousMode() ) ? "" : right_team.name().c_str(),
                   mode_str.c_str(),
                   view->cycle() );
-        text = QString::fromAscii( buf );
+        text = QString::fromUtf8( buf );
     }
 
     painter.setFont( font );

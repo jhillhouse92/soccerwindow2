@@ -33,7 +33,7 @@
 #include <config.h>
 #endif
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "detail_dialog.h"
 
@@ -396,7 +396,7 @@ DetailDialog::updateLabels()
     snprintf( buf, 64, " %6.2f, %6.2f",
               ball.x() * reverse,
               ball.y() * reverse );
-    M_ball_pos->setText( QString::fromAscii( buf ) );
+    M_ball_pos->setText( QString::fromUtf8( buf ) );
 
     if ( ball.hasDelta() )
     {
@@ -404,11 +404,11 @@ DetailDialog::updateLabels()
                             ball.deltaY() * reverse );
         snprintf( buf, 64, " %6.2f, %6.2f",
                   vel.x, vel.y );
-        M_ball_vel->setText( QString::fromAscii( buf ) );
+        M_ball_vel->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " (%7.3f, %6.1f)",
                   vel.r(), vel.th().degree() );
-        M_ball_polar_vel->setText( QString::fromAscii( buf ) );
+        M_ball_polar_vel->setText( QString::fromUtf8( buf ) );
     }
 
     if ( ! last_view )
@@ -424,11 +424,11 @@ DetailDialog::updateLabels()
 
         snprintf( buf, 64, " %6.2f, %6.2f",
                   move.x, move.y );
-        M_ball_last_move->setText( QString::fromAscii( buf ) );
+        M_ball_last_move->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " (%7.3f, %6.1f)",
                   move.r(), move.th().degree() );
-        M_ball_last_polar_move->setText( QString::fromAscii( buf ) );
+        M_ball_last_polar_move->setText( QString::fromUtf8( buf ) );
     }
 
     // update player
@@ -451,18 +451,18 @@ DetailDialog::updateLabels()
                 ? ( number > 0 ? "   Right" : "   Left" )
                 : ( number > 0 ? "   Left" : "   Right" ) ),
               number > 0 ? number : -number );
-    M_player_number->setText( QString::fromAscii( buf ) );
+    M_player_number->setText( QString::fromUtf8( buf ) );
 
     // player type
     snprintf( buf, 64, " %d" ,
               player.type() );
-    M_player_type->setText( QString::fromAscii( buf ) );
+    M_player_type->setText( QString::fromUtf8( buf ) );
 
     // pos
     snprintf( buf, 64, " %6.2f, %6.2f",
               player.x() * reverse,
               player.y() * reverse );
-    M_player_pos->setText( QString::fromAscii( buf ) );
+    M_player_pos->setText( QString::fromUtf8( buf ) );
 
     // velocity, speed, speed dir
     if ( player.hasDelta() )
@@ -472,21 +472,21 @@ DetailDialog::updateLabels()
 
         snprintf( buf, 64, " %6.2f, %6.2f",
                   vel.x, vel.y );
-        M_player_vel->setText( QString::fromAscii( buf ) );
+        M_player_vel->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " (%7.3f, %6.1f)",
                   vel.r(), vel.th().degree() );
-        M_player_polar_vel->setText( QString::fromAscii( buf ) );
+        M_player_polar_vel->setText( QString::fromUtf8( buf ) );
 
         // ball relative velocity
         snprintf( buf, 64, " %6.2f, %6.2f",
                   ball.deltaX() - vel.x, ball.deltaY() - vel.y );
-        M_player_ball_rel_vel->setText( QString::fromAscii( buf ) );
+        M_player_ball_rel_vel->setText( QString::fromUtf8( buf ) );
 
         // max turn moment
         double max_turn = player_type.effectiveTurn( 180.0, vel.r() );
         snprintf( buf, 64, " %3.2f", max_turn );
-        M_max_turn_moment->setText( QString::fromAscii( buf ) );
+        M_max_turn_moment->setText( QString::fromUtf8( buf ) );
     }
 
     if ( ! last_view )
@@ -503,11 +503,11 @@ DetailDialog::updateLabels()
 
         snprintf( buf, 64, " %6.2f, %6.2f",
                   last_move.x, last_move.y );
-        M_player_last_move->setText( QString::fromAscii( buf ) );
+        M_player_last_move->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " (%7.3f, %6.1f)",
                   last_move.r(), last_move.th().degree() );
-        M_player_last_polar_move->setText( QString::fromAscii( buf ) );
+        M_player_last_polar_move->setText( QString::fromUtf8( buf ) );
     }
 
     // body angle
@@ -516,7 +516,7 @@ DetailDialog::updateLabels()
 
     snprintf( buf, 64," %6.1f",
               body.degree() );
-    M_player_body->setText( QString::fromAscii( buf ) );
+    M_player_body->setText( QString::fromUtf8( buf ) );
 
     // neck, head angle
     if ( player.hasView() )
@@ -527,7 +527,7 @@ DetailDialog::updateLabels()
 
         snprintf( buf, 64, " %6.1f(%6.1f)",
                   head.degree(), neck.degree() );
-        M_player_head->setText( QString::fromAscii( buf ) );
+        M_player_head->setText( QString::fromUtf8( buf ) );
     }
 
     {
@@ -563,7 +563,7 @@ DetailDialog::updateLabels()
             }
 
             snprintf( buf, 64, " %.4f", catch_prob );
-            M_player_catch_prob->setText( QString::fromAscii( buf ) );
+            M_player_catch_prob->setText( QString::fromUtf8( buf ) );
         }
         else
         {
@@ -588,7 +588,7 @@ DetailDialog::updateLabels()
         }
 
         snprintf( buf, 64, " %.4f", 1.0 - tackle_fail_prob );
-        M_player_tackle_prob->setText( QString::fromAscii( buf ) );
+        M_player_tackle_prob->setText( QString::fromUtf8( buf ) );
 
         //
         // foul prob
@@ -604,7 +604,7 @@ DetailDialog::updateLabels()
         }
 
         snprintf( buf, 64, " %.4f", 1.0 - foul_fail_prob );
-        M_player_foul_prob->setText( QString::fromAscii( buf ) );
+        M_player_foul_prob->setText( QString::fromUtf8( buf ) );
 
     }
 
@@ -614,7 +614,7 @@ DetailDialog::updateLabels()
         snprintf( buf, 64, " %6.2f, %6.2f",
                   player.data().point_x_ * reverse,
                   player.data().point_y_ * reverse );
-        M_player_pointto_pos->setText( QString::fromAscii( buf ) );
+        M_player_pointto_pos->setText( QString::fromUtf8( buf ) );
     }
     else
     {
@@ -629,7 +629,7 @@ DetailDialog::updateLabels()
                     ? player.data().focus_side_ == 'l' ? "Right" : "Left"
                     : player.data().focus_side_ == 'l' ? "Left" : "Right" ),
                   player.data().focus_unum_ );
-        M_player_focus_target->setText( QString::fromAscii( buf ) );
+        M_player_focus_target->setText( QString::fromUtf8( buf ) );
     }
     else
     {
@@ -641,19 +641,19 @@ DetailDialog::updateLabels()
     {
         snprintf( buf, 64, " %6.1f",
                   player.stamina() );
-        M_stamina->setText( QString::fromAscii( buf ) );
+        M_stamina->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " %.0f",
                   player.staminaCapacity() );
-        M_stamina_capacity->setText( QString::fromAscii( buf ) );
+        M_stamina_capacity->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " %5.3f / %5.3f",
                   player.effort(), player_type.effortMax() );
-        M_effort->setText( QString::fromAscii( buf ) );
+        M_effort->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " %5.3f / 1.0",
                   player.recovery() );
-        M_recovery->setText( QString::fromAscii( buf ) );
+        M_recovery->setText( QString::fromUtf8( buf ) );
     }
 
     // command count
@@ -661,47 +661,47 @@ DetailDialog::updateLabels()
     {
         snprintf( buf, 64, "  %5d",
                   player.kickCount() );
-        M_kick_count->setText( QString::fromAscii( buf ) );
+        M_kick_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.dashCount() );
-        M_dash_count->setText( QString::fromAscii( buf ) );
+        M_dash_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.turnCount() );
-        M_turn_count->setText( QString::fromAscii( buf ) );
+        M_turn_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.sayCount() );
-        M_say_count->setText( QString::fromAscii( buf ) );
+        M_say_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.turnNeckCount() );
-        M_turn_neck_count->setText( QString::fromAscii( buf ) );
+        M_turn_neck_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.catchCount() );
-        M_catch_count->setText( QString::fromAscii( buf ) );
+        M_catch_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.moveCount() );
-        M_move_count->setText( QString::fromAscii( buf ) );
+        M_move_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.changeViewCount() );
-        M_change_view_count->setText( QString::fromAscii( buf ) );
+        M_change_view_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.tackleCount() );
-        M_tackle_count->setText( QString::fromAscii( buf ) );
+        M_tackle_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.pointtoCount() );
-        M_pointto_count->setText( QString::fromAscii( buf ) );
+        M_pointto_count->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, "  %5d",
                   player.attentiontoCount() );
-        M_attentionto_count->setText( QString::fromAscii( buf ) );
+        M_attentionto_count->setText( QString::fromUtf8( buf ) );
     }
 
     // ball related info
@@ -712,10 +712,10 @@ DetailDialog::updateLabels()
 
         snprintf( buf, 64, " %6.2f, %6.2f",
                   player_to_ball.x, player_to_ball.y );
-        M_player_ball_rel_pos->setText( QString::fromAscii( buf ) );
+        M_player_ball_rel_pos->setText( QString::fromUtf8( buf ) );
 
         snprintf( buf, 64, " (%7.3f, %6.1f)",
                   player_to_ball.r(), player_to_ball.th().degree() );
-        M_player_ball_rel_polar->setText( QString::fromAscii( buf ) );
+        M_player_ball_rel_polar->setText( QString::fromUtf8( buf ) );
     }
 }
