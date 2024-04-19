@@ -3,6 +3,8 @@ project(soccerwindow2)
 
 set(CMAKE_C_COMPILER "/usr/local/opt/llvm/bin/clang")
 set(CMAKE_CXX_COMPILER "/usr/local/opt/llvm/bin/clang++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations -Wno-unused-result")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-deprecated-declarations -Wno-unused-result")
 
 set(CMAKE_CXX_STANDARD 11) # or higher, such as 14, 17, etc.
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -56,7 +58,7 @@ file(GLOB MODEL_SOURCES ${SRC_DIR}/model/*.cpp)
 file(GLOB WINDOW_SOURCES ${SRC_DIR}/qt4/*.cpp)
 include_directories(${SRC_DIR}/model ${SRC_DIR}/qt4)
 
-include_directories(AFTER SYSTEM ${QT_INCLUDES} "/usr/local/opt/qt@4/include/QtGui")
+include_directories(AFTER SYSTEM ${QT_INCLUDES} "/usr/local/opt/qt@4/include/QtGui" "/usr/local/opt/qt@4/include/QtCore" "/usr/local/opt/qt@4/include/QtNetwork")
 
 # Display the QT_INCLUDES path
 message(STATUS "QT_INCLUDES: ${QT_INCLUDES}")
