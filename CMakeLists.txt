@@ -37,6 +37,7 @@ find_package(Qt4 REQUIRED COMPONENTS QtCore QtGui QtNetwork)
 set(QT_INCLUDES "/usr/local/opt/qt@4/include")     # Set the Qt4 includes
 set(QT_LIBRARY_DIRS "/usr/local/opt/qt@4/lib")
 
+find_library(QT_CORE NAMES QtCore PATHS ${QT_LIBRARY_DIRS} NO_DEFAULT_PATH)
 find_library(QT_GUI_LIBRARY NAMES QtGui PATHS ${QT_LIBRARY_DIRS} NO_DEFAULT_PATH)
 find_library(QT_NETWORK_LIBRARY NAMES QtNetwork PATHS ${QT_LIBRARY_DIRS} NO_DEFAULT_PATH)
 
@@ -64,4 +65,4 @@ message(STATUS "QT_INCLUDES: ${QT_INCLUDES}")
 link_directories(${QT_LIBRARY_DIRS})
 
 add_executable(soccerwindow2 ${MODEL_SOURCES} ${WINDOW_SOURCES})
-target_link_libraries(soccerwindow2 ${QT_GUI_LIBRARY} ${QT_NETWORK_LIBRARY} rcsc_agent rcsc_ann rcsc_geom rcsc_gz rcsc_net rcsc_param rcsc_rcg rcsc_time)
+target_link_libraries(soccerwindow2 ${QT_CORE} ${QT_GUI_LIBRARY} ${QT_NETWORK_LIBRARY} rcsc_agent rcsc_ann rcsc_geom rcsc_gz rcsc_net rcsc_param rcsc_rcg rcsc_time)
